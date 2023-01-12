@@ -12,8 +12,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install lcov
         git clone --recursive https://github.com/Snaipe/Criterion
+        sudo meson build
         sudo apt-get install -y ninja-build
-        sudo ninja -C build install
+        ninja -C build
     - name: Run tests
       run: |
         make unit_tests
