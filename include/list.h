@@ -133,4 +133,11 @@
     */
     int ll_get_list_length(linked_list_t *list);
 
+    /**
+     * @brief reverse the list
+     * 
+     * @param list linked_list_t*
+     */
+    void ll_reverse_list(linked_list_t *list);
+
 #endif /* !LIST_H_ */

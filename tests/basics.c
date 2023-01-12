@@ -112,3 +112,18 @@ Test(linked_list, ll_is_element_present_remove) {
     cr_assert_eq(ll_is_element_present(list, data1, int_cmp), false);
     ll_free_list(list, free_int);
 }
+
+Test(linked_list, ll_reverse_list) {
+    linked_list_t *list = ll_init_linked_list();
+    int *data1 = malloc(sizeof(int));
+    int *data2 = malloc(sizeof(int));
+    *data1 = 20;
+    *data2 = 42;
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    printf("\n\n");
+    ll_print_list(list, int_printer);
+    ll_reverse_list(list);
+    printf("\n");
+    ll_print_list(list, int_printer);
+}

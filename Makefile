@@ -5,36 +5,32 @@
 ## Makefile
 ##
 
-CC 					= 	gcc
+CC 					:= 	gcc
 
-CFLAGS 				= 	-g -Wall -Wextra -I include
+CFLAGS 				:= 	-g -Wall -Wextra -I include
 
-SOURCES_UNIT	 	= 	src/init_list.c				\
+SOURCE 				:= 	src/init_list.c				\
 						src/free_list.c 			\
 						src/get_list_length.c 		\
 						src/is_element_present.c	\
 						src/list_gestion.c 			\
 						src/print_list.c			\
-						tests/basics.c
+						src/reverse_list.c
 
-SOURCE 				= 	src/init_list.c				\
-						src/free_list.c 			\
-						src/get_list_length.c 		\
-						src/is_element_present.c	\
-						src/list_gestion.c 			\
-						src/print_list.c
+SOURCES_UNIT	 	:=	$(SOURCE)
+SOURCES_UNIT		+=	tests/basics.c
 
-OBJECTS_UNIT 		= 	$(SOURCES_UNIT:.c=.o)
+OBJECTS_UNIT 		:= 	$(SOURCES_UNIT:.c=.o)
 
-OBJECTS 			= 	$(SOURCE:.c=.o)
+OBJECTS 			:= 	$(SOURCE:.c=.o)
 
-TARGET				=	unit_tests
+TARGET				:=	unit_tests
 
-NAME				=	liblist.a
+NAME				:=	liblist.a
 
-MY_COVER			= 	--coverage -lcriterion
+MY_COVER			:= 	--coverage -lcriterion
 
-LCOV 				= 	-fprofile-arcs -ftest-coverage
+LCOV 				:= 	-fprofile-arcs -ftest-coverage
 
 all: $(NAME)
 
