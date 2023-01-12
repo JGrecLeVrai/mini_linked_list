@@ -17,3 +17,17 @@ bool ll_is_element_present(linked_list_t *list, void *element, CMP_CALLBACK)
     }
     return false;
 }
+
+bool ll_is_element_present_remove(linked_list_t *list, void *element,
+CMP_CALLBACK)
+{
+    struct linked_list_node *node;
+
+    TAILQ_FOREACH(node, &list->head, nodes) {
+        if (cmp_func(node->data, element)) {
+            TAILQ_REMOVE(&list->head, node, nodes);
+            return true;
+        }
+    }
+    return false;
+}

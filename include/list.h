@@ -115,6 +115,17 @@
     CMP_CALLBACK);
 
     /**
+    * @brief check if an element is present in the list and remove
+    * it if it is
+    *
+    * @param list linked_list_t*
+    * @param element the element to check and remove
+    * @return true / false
+    */
+    bool ll_is_element_present_remove(linked_list_t *list, void *element,
+    CMP_CALLBACK);
+
+    /**
     * @brief get the length of the list
     *
     * @param list linked_list_t*

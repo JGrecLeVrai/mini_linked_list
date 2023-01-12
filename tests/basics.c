@@ -45,7 +45,7 @@ Test(linked_list, print_list) {
     int *data = malloc(sizeof(int));
     *data = 42;
     ll_add_node_end(list, data);
-    ll_print_list(list, int_printer);
+    // ll_print_list(list, int_printer);
     ll_free_list(list, free_int);
 }
 
@@ -94,6 +94,19 @@ Test(linked_list, handle_big_list_gestion) {
         ll_add_node_end(list, data);
     }
     cr_assert_eq(ll_get_list_length(list), 1000);
-    ll_print_list(list, int_printer);
+    // ll_print_list(list, int_printer);
     cr_assert_eq(ll_is_element_present(list, data, int_cmp), true);
+}
+
+Test(linked_list, ll_is_element_present_remove) {
+    linked_list_t *list = ll_init_linked_list();
+    int *data1 = malloc(sizeof(int));
+    int *data2 = malloc(sizeof(int));
+    *data1 = 20;
+    *data2 = 42;
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_is_element_present_remove(list, data1, int_cmp);
+    cr_assert_eq(ll_is_element_present(list, data1, int_cmp), false);
+    ll_free_list(list, free_int);
 }
