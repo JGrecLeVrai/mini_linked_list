@@ -11,12 +11,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install lcov
-        git clone --recursive https://github.com/Snaipe/Criterion
-        sudo apt-get install python3 python3-pip python3-setuptools \
-                       python3-wheel ninja-build
-        pip3 install --user meson
-        meson build
-        ninja -C build
+        sudo apt-get install libcriterion-dev
     - name: Run tests
       run: |
         make unit_tests
