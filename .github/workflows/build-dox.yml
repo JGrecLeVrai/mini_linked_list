@@ -10,7 +10,9 @@ jobs:
     - name: Install Doxygen
       run: sudo apt-get install doxygen
     - name: Build Doxygen
-      run: doxygen Doxyfile
+      run: |
+        doxygen -g
+        doxygen Doxyfile
     - name: Upload Doxygen
       uses: actions/upload-artifact@v2
       with:
