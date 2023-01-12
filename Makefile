@@ -42,7 +42,7 @@ $(NAME): $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@  $(MY_COVER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 re: fclean all
 
@@ -55,7 +55,8 @@ fclean: clean
 	@rm -f $(TARGET)
 	@rm -f $(NAME)
 
-unit_tests: $(OBJECTS_UNIT)
+unit_tests: CFLAGS	+=	$(MY_COVER)
+unit_tests: fclean $(OBJECTS_UNIT)
 	$(CC) $(LCOV) -o $(TARGET) $(OBJECTS_UNIT) $(MY_COVER)
 
 gcovr:
