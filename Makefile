@@ -58,7 +58,5 @@ fclean: clean
 unit_tests: CFLAGS	+=	$(MY_COVER)
 unit_tests: fclean $(OBJECTS_UNIT)
 	$(CC) $(LCOV) -o $(TARGET) $(OBJECTS_UNIT) $(MY_COVER)
-
-gcovr:
 	@./unit_tests
 	@gcovr --exclude tests/
