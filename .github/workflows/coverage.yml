@@ -26,6 +26,3 @@ jobs:
       with:
         file: coverage.info
         token: ${{ secrets.CODECOV_TOKEN }}
-    - name: Add coverage badge to README
-      run: |
-        echo "[![codecov](https://codecov.io/gh/OWNER/REPO/branch/master/graph/badge.svg)](https://codecov.io/gh/OWNER/REPO)" >> README.md
