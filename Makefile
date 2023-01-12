@@ -52,7 +52,8 @@ fclean: clean
 	@rm -f $(NAME)
 
 unit_tests: $(OBJECTS_UNIT)
-	$(CC) -fprofile-arcs -ftest-coverage -o $(TARGET) $(OBJECTS_UNIT) -lcriterion --coverage
+	$(CC) -fprofile-arcs -ftest-coverage -o $(TARGET)\
+	$(OBJECTS_UNIT) -lcriterion --coverage
 
 gcovr: unit_tests
 	gcovr --exclude tests/
