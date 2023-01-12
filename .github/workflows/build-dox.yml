@@ -13,8 +13,8 @@ jobs:
       run: |
         doxygen -g
         doxygen Doxyfile
-    - name: Upload Doxygen
-      uses: actions/upload-artifact@v2
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: doxygen
-        path: docs/html
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: html
