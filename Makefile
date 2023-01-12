@@ -32,13 +32,17 @@ TARGET				=	unit_tests
 
 NAME				=	liblist.a
 
+MY_COVER			= 	--coverage -lcriterion
+
+LCOV 				= 	-fprofile-arcs -ftest-coverage
+
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@  -lcriterion --coverage
+	$(CC) $(CFLAGS) -c $< -o $@  $(MY_COVER)
 
 re: fclean all
 
@@ -52,8 +56,8 @@ fclean: clean
 	@rm -f $(NAME)
 
 unit_tests: $(OBJECTS_UNIT)
-	$(CC) -fprofile-arcs -ftest-coverage -o $(TARGET)\
-	$(OBJECTS_UNIT) -lcriterion --coverage
+	$(CC) $(LCOV) -o $(TARGET) $(OBJECTS_UNIT) $(MY_COVER)
 
-gcovr: unit_tests
-	gcovr --exclude tests/
+gcovr:
+	@./unit_tests
+	@gcovr --exclude tests/
