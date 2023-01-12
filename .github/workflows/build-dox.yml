@@ -5,18 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen
     - name: Build Doxygen
-      uses: doxygen/doxygen-action@v1
+      run: doxygen Doxyfile
+    - name: Upload Doxygen
+      uses: actions/upload-artifact@v2
       with:
-        doxyfile: Doxyfile
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: html
+        name: doxygen
+        path: docs/html
