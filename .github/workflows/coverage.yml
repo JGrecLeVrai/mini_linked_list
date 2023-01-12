@@ -1,7 +1,3 @@
-name: Coverage
-
-on: [push, pull_request]
-
 jobs:
   coverage:
     runs-on: ubuntu-latest
@@ -21,8 +17,9 @@ jobs:
     - name: Generate coverage report
       run: |
         genhtml coverage.info --output-directory out
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: out
+    - name: Checkout gh-pages branch
+      run: git checkout -b gh-pages
+    - name: Copy coverage report to gh-pages branch
+      run: cp -R out/* .
+    - name: Push changes to gh-pages branch
+      run: git add . && git commit -m "Updating coverage report" && git push origin gh-pages
