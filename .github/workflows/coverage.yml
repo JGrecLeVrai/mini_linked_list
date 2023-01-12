@@ -15,8 +15,9 @@ jobs:
         sudo apt-get install python3 python3-pip python3-setuptools \
                        python3-wheel ninja-build
         pip3 install --user meson
-        meson setup .
-        meson compile -C .
+        mkdir build
+        meson setup build
+        meson compile -C build
         ninja -C build
     - name: Run tests
       run: |
