@@ -21,9 +21,11 @@ jobs:
     - name: Generate coverage report
       run: |
         genhtml coverage.info --output-directory out
-    - name: Checkout gh-pages branch
-      run: git checkout -b gh-pages
-    - name: Copy coverage report to gh-pages branch
-      run: cp -R out/* .
-    - name: Push changes to gh-pages branch
-      run: git add . && git commit -m "Updating coverage report" && git push origin gh-pages
+      - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: coverage.info
+        token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Add coverage badge to README
+      run: |
+        echo "[![codecov](https://codecov.io/gh/OWNER/REPO/branch/master/graph/badge.svg)](https://codecov.io/gh/OWNER/REPO)" >> README.md
