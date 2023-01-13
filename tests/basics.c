@@ -159,3 +159,20 @@ Test(linked_list, ll_remove_all_other_occurences) {
     cr_assert_eq(ll_get_nb_elements(list, data1, int_cmp), 1);
     cr_assert_eq(ll_get_nb_elements(list, data2, int_cmp), 4);
 }
+
+Test(linked_list, ll_pop_node) {
+    linked_list_t *list = ll_init_linked_list();
+    int *data1 = malloc(sizeof(int));
+    int *data2 = malloc(sizeof(int));
+    *data1 = 20;
+    *data2 = 42;
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data2);
+    cr_assert_eq(ll_pop_node(list), data2);
+}

@@ -43,6 +43,12 @@
     };
 
     /**
+    * @brief typedef for struct linked_list_node
+    *
+    */
+    typedef struct linked_list_node linked_list_node_t;
+
+    /**
     * @brief A linked list structure (head of the list)
     *
     */
@@ -158,5 +164,13 @@
     */
     int ll_remove_all_other_occurences(linked_list_t *list, void *data,
     CMP_CALLBACK);
+
+    /**
+    * @brief Pop the first node of the list
+    *
+    * @param list linked_list_t*
+    * @return void* - the data of the node
+    */
+    void *ll_pop_node(linked_list_t *list);
 
 #endif /* !LIST_H_ */

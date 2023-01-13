@@ -28,3 +28,13 @@ void ll_remove_node(linked_list_t *list, struct linked_list_node *node)
     TAILQ_REMOVE(&list->head, node, nodes);
     free(node);
 }
+
+void *ll_pop_node(linked_list_t *list)
+{
+    struct linked_list_node *node = TAILQ_LAST(&list->head, list_head);
+    void *data = node->data;
+
+    TAILQ_REMOVE(&list->head, node, nodes);
+    free(node);
+    return data;
+}
