@@ -6,7 +6,7 @@ This is a small library that implements a linked-list in C.
 ## Usage
 ```make``` to compile the library.
 
-```make unit_tests``` to compile the tests. And ```make gcovr``` to generate the coverage report.
+```make unit_tests``` to compile the tests.
 
 ```make clean``` to clean the repository.
 
