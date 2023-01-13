@@ -7,7 +7,7 @@
 
 CC 					:= 	gcc
 
-CFLAGS 				:= 	-g -Wall -Wextra -I include
+CFLAGS 				:= 	-Wall -Wextra -I include
 
 SOURCE 				:= 	src/init_list.c				\
 						src/free_list.c 			\
