@@ -15,7 +15,8 @@ SOURCE 				:= 	src/init_list.c				\
 						src/is_element_present.c	\
 						src/list_gestion.c 			\
 						src/print_list.c			\
-						src/reverse_list.c
+						src/reverse_list.c			\
+						src/nb_elements.c
 
 SOURCES_UNIT	 	:=	$(SOURCE)
 SOURCES_UNIT		+=	tests/basics.c

@@ -140,4 +140,23 @@
     */
     void ll_reverse_list(linked_list_t *list);
 
+    /**
+    * @brief Get the nb elements object
+    *
+    * @param list linked_list_t*
+    * @param data void*
+    * @return int - the number of elements in the list
+    */
+    int ll_get_nb_elements(linked_list_t *list, void *data, CMP_CALLBACK);
+
+    /**
+    * @brief Remove all other occurences of the element in the list
+    *
+    * @param list linked_list_t*
+    * @param data void* - the element to save
+    * @return int - the number of elements removed
+    */
+    int ll_remove_all_other_occurences(linked_list_t *list, void *data,
+    CMP_CALLBACK);
+
 #endif /* !LIST_H_ */

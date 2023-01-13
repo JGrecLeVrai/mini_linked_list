@@ -127,3 +127,35 @@ Test(linked_list, ll_reverse_list) {
     printf("\n");
     ll_print_list(list, int_printer);
 }
+
+Test(linked_list, ll_get_nb_elements) {
+    linked_list_t *list = ll_init_linked_list();
+    int *data1 = malloc(sizeof(int));
+    int *data2 = malloc(sizeof(int));
+    *data1 = 20;
+    *data2 = 42;
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    cr_assert_eq(ll_get_nb_elements(list, data1, int_cmp), 1);
+    cr_assert_eq(ll_get_nb_elements(list, data2, int_cmp), 1);
+    ll_free_list(list, free_int);
+}
+
+Test(linked_list, ll_remove_all_other_occurences) {
+    linked_list_t *list = ll_init_linked_list();
+    int *data1 = malloc(sizeof(int));
+    int *data2 = malloc(sizeof(int));
+    *data1 = 20;
+    *data2 = 42;
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data1);
+    ll_add_node_end(list, data2);
+    ll_add_node_end(list, data2);
+    cr_assert_eq(ll_remove_all_other_occurences(list, data1, int_cmp), 3);
+    cr_assert_eq(ll_get_nb_elements(list, data1, int_cmp), 1);
+    cr_assert_eq(ll_get_nb_elements(list, data2, int_cmp), 4);
+}
