@@ -74,16 +74,20 @@
     *
     * @param list linked_list_t*
     * @param void *data (data is a pointer to the data you want to store)
+    *
+    * @return bool (1 if success, 0 if error)
     */
-    void ll_add_node_end(linked_list_t *list, void *data);
+    bool ll_add_node_end(linked_list_t *list, void *data);
 
     /**
     * @brief add a node at the head of the list
     *
     * @param list linked_list_t*
     * @param data (data is a pointer to the data you want to store)
+    *
+    * @return bool (1 if success, 0 if error)
     */
-    void ll_add_node_head(linked_list_t *list, void *data);
+    bool ll_add_node_head(linked_list_t *list, void *data);
 
     /**
     * @brief remove a node from the list
