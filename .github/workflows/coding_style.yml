@@ -1,0 +1,26 @@
+
+name: Coding Style
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  coding_style:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pull the docker image
+        run: docker pull ghcr.io/epitech/coding-style-checker:latest
+      - name: Run
+        run: |
+          docker run --rm -i -v "${{ github.workspace }}":"/mnt/delivery" -v "${{ github.workspace }}":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
+      - name: Output
+        run: |
+          cat ${{ github.workspace }}/coding-style-reports.log
+          count=$(cat coding-style-reports.log | wc -c)
+          if [ $count -gt 0 ]; then
+              exit 1
+          fi
