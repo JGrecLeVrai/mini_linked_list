@@ -8,6 +8,8 @@ This is a small library that implements a linked-list in C.
 
 ```make unit_tests``` to compile the tests.
 
+```make tests_run``` to run the tests.
+
 ```make clean``` to clean the repository.
 
 ```make fclean``` to clean the repository and the library.
