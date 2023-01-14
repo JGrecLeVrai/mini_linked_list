@@ -20,12 +20,14 @@ SOURCE 				:= 	src/init_list.c				\
 
 SOURCES_UNIT	 	:=	$(SOURCE)
 SOURCES_UNIT		+=	tests/basics.c
+SOURCES_UNIT		+=	tests/test_failing_memory_allocation.c
+SOURCES_UNIT		+=	tests/malloc_wrapper.c
 
 OBJECTS_UNIT 		:= 	$(SOURCES_UNIT:.c=.o)
 
 OBJECTS 			:= 	$(SOURCE:.c=.o)
 
-TARGET				:=	unit_tests
+UNIT				:=	unit_tests
 
 NAME				:=	liblist.a
 
@@ -41,19 +43,26 @@ $(NAME): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-re: fclean all
-
 clean:
 	@rm -f $(OBJECTS_UNIT)
 	@find . -name "*.gcno" -delete
 	@find . -name "*.gcda" -delete
 
 fclean: clean
-	@rm -f $(TARGET)
+	@rm -f $(UNIT)
 	@rm -f $(NAME)
 
-unit_tests: CFLAGS	+=	$(MY_COVER)
-unit_tests: fclean $(OBJECTS_UNIT)
-	$(CC) $(LCOV) -o $(TARGET) $(OBJECTS_UNIT) $(MY_COVER)
-	@./unit_tests
-	@gcovr --exclude tests/
+re: fclean all
+
+.PHNONY: clean fclean re
+
+$(UNIT): CFLAGS	+= $(MY_COVER)
+$(UNIT): CFLAGS	+= -Wl,--wrap=malloc
+$(UNIT): $(OBJECTS_UNIT)
+	$(CC) $(LCOV) -o $(UNIT) $(OBJECTS_UNIT) $(CFLAGS)
+
+tests_run: fclean $(UNIT)
+	@ ./$(UNIT) --always-succeed
+	@ gcovr --exclude tests
+
+.PHONY: tests_run
