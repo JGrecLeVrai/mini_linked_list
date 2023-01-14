@@ -1,0 +1,9 @@
+.idea
+.vscode
+.*#*
+.*"~
+*.gcda
+*.gcno
+*.o
+*.a
+unit_tests
